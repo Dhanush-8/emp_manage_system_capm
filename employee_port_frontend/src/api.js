@@ -1,5 +1,7 @@
-const API_BASE =
-  import.meta.env.VITE_API_URL || 'http://localhost:4004/odata/v4/employee';
+// By default the UI calls the same origin and Vite proxies /odata to the
+// backend (see vite.config.js). Set VITE_API_URL only if the API lives on a
+// different origin.
+const API_BASE = import.meta.env.VITE_API_URL || '/odata/v4/employee';
 
 async function request(path, options = {}) {
   let response;
@@ -14,7 +16,7 @@ async function request(path, options = {}) {
     });
   } catch {
     throw new Error(
-      'Could not reach the server. Make sure the backend is running on port 4004.'
+      'Could not reach the API. Make sure the backend is running (cds watch on port 4004).'
     );
   }
 

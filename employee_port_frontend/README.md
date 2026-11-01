@@ -12,8 +12,10 @@ PATCH  /odata/v4/employee/Employees(ID)
 DELETE /odata/v4/employee/Employees(ID)
 ```
 
-The base URL defaults to `http://localhost:4004/odata/v4/employee`. To point at
-another server, copy `.env.example` to `.env` and change `VITE_API_URL`.
+The UI calls the same origin (`/odata/v4/employee`), and Vite proxies `/odata`
+to `http://localhost:4004` (see `vite.config.js`). This means it works with
+localhost, port forwarding and tunnels without CORS or mixed-content problems.
+Only set `VITE_API_URL` if the API is on a different origin.
 
 ## Structure
 
